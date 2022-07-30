@@ -1,7 +1,7 @@
 .form__content{
     background-color: white;
-    position: relative;
-    top: calc(50% - 0px);
+    position: absolute;
+    top: calc(50% - 200px);
     left: calc(50% - 150px);
 
     border-radius: 10px;

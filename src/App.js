@@ -1,26 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import {useEffect, useState} from 'react'
 import LoginPage from './views/LoginPage';
+import CollegePage from './views/CollegePage';
+import PostPage from './views/PostPage';
+import NavBar from './views/NavBar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
- const [test, setTest] = useState('hello')
 
-  //get
-  // useEffect(() => {
-  //   fetch("http://localhost:9292/users")
-  //   .then(res => res.json())
-  //   .then((data) => console.log(data))
-  // },[])
-  //post request
-  //update request - patch
-  //delete request - delete
+  const [login, setLogin] = useState({})
 
-  return (
-    <div className="App">
-    Hey! {test}
-      <LoginPage/>
-    </div>
+  function loggingIn(data){
+    setLogin(data)
+  }
+
+  return ( 
+      <BrowserRouter>
+        <NavBar login={login}/>
+        <Routes>
+          <Route path="/" element={<CollegePage />} />
+          <Route path="/:college_name" element={<PostPage />} />
+          <Route path="/login" element={<LoginPage loggingIn={loggingIn}/>} />
+        </Routes>
+      </BrowserRouter>
   );
 }
 
