@@ -1,32 +1,49 @@
 import React, {useState} from 'react'
 import './LoginPage.css'
+import {useNavigate} from 'react-router-dom'
 
 import FormControl  from '@mui/material/FormControl'
 import InputLabel from "@mui/material/InputLabel"
 import FilledInput from '@mui/material/FilledInput'
 import Button from '@mui/material/Button'
 
-function LoginPage() {
-  const [formObj, setFormObj] = useState({
-    username: "",
-    password: ""
-  })
+function LoginPage({loggingIn}) {
 
-  function handleChange(e){
-      setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
-  }
+    const [formObj, setFormObj] = useState({
+      username: "",
+      password: ""
+    })
+    let navigate = useNavigate()
 
-  function handleSubmit(e){
-      e.preventDefault()
-      const obj = JSON.stringify(formObj)
-      fetch(`http://localhost:9292/users/${obj}`)
-      .then(res => res.json())
-      .then((data) => console.log(data))
-      setFormObj({
-        username: "",
-        password: ""
-      })
-  }
+    function handleChange(e){
+        setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        fetch(`http://localhost:9292/users`,{
+          method: "POST",
+          headers: {
+            "Content-Type": 'application/json',
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(formObj)
+        })
+        .then(res => res.json())
+        .then((data) => {
+          setFormObj({
+            username: "",
+            password: ""
+          })
+          if (data == null){
+            alert("Incorrect login")
+          }
+          else{
+            navigate("/")
+            loggingIn(data)
+          }      
+        })
+      }
 
   return (
     <div className="form__content">
