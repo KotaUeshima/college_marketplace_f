@@ -12,7 +12,7 @@ function PostPage() {
     const [posts, setPosts] = useState([])
 
     const {college_name} = useParams()
-    // useParams = {college_name: Notre Dame}
+    // useParams = {college_name: Notre Dame}//
 
     useEffect(() => {
       fetch(`http://localhost:9292/colleges/${college_name}`)
