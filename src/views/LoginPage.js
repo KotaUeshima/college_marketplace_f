@@ -7,7 +7,7 @@ import InputLabel from "@mui/material/InputLabel"
 import FilledInput from '@mui/material/FilledInput'
 import Button from '@mui/material/Button'
 
-function LoginPage({loggingIn}) {
+function LoginPage({handleLoginState}) {
 
     const [formObj, setFormObj] = useState({
       username: "",
@@ -39,11 +39,13 @@ function LoginPage({loggingIn}) {
             alert("Incorrect login")
           }
           else{
+            alert(`Welcome back ${data.username}`)
             navigate("/")
-            loggingIn(data)
+            handleLoginState(data)
           }      
         })
       }
+
 
   return (
     <div className="form__content">
