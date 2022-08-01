@@ -10,11 +10,14 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 
 import HomeIcon from '@mui/icons-material/Home';
-import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
-function NavBar({login}) {
+function NavBar({loggedIn, handleLoginState}) {
 
-    const toggleLoginButton = (JSON.stringify(login) === '{}')
+    function handleLogOut(){
+        if(loggedIn){
+            handleLoginState()
+        }
+    }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -42,9 +45,9 @@ function NavBar({login}) {
                     <HomeIcon />   
                 </IconButton>
                 </Link> 
-                <Link to="/login" style={{ textDecoration: 'none' }}>
-                    <Button color="inherit">{toggleLoginButton?
-                    "Login" : "Logout"
+                <Link to={loggedIn? "/" : "/login"} style={{ textDecoration: 'none' }}>
+                    <Button onClick={handleLogOut} color="inherit">{loggedIn?
+                    "Logout" : "Login"
                     }</Button>
                 </Link>
             </Toolbar>

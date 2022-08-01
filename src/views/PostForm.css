@@ -1,0 +1,42 @@
+.postform__content{
+    background-color: white;
+    position: relative;
+    top: calc(50% - 250px);
+    left: calc(50% - 150px);
+
+    border-radius: 10px;
+    width: 300px;
+    height: 400px;
+}
+
+.postform__form{
+    display: grid;
+    grid-template-rows: 75px 75px 75px 75px 40px;
+
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.postform__item_name{
+    grid-row: 1;
+}
+
+.postform__image{
+    grid-row: 2;
+}
+
+.postform__price{
+    grid-row: 3;
+}
+
+.postform__phone_number{
+    grid-row: 4;
+}
+
+.postform__submit{
+    grid-row: 5;
+    width: 240px;
+    height: 40px;
+    justify-self: end;
+    align-self: start;
+}

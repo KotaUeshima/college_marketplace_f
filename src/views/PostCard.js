@@ -23,7 +23,7 @@ function PostCard({post}) {
                 <CardMedia
                 component="img"
                 height="160"
-                image="https://www.ikea.com/us/en/images/products/micke-desk-black-brown__0735981_pe740299_s5.jpg"
+                image={image_url}
                 alt={item_name}
                 /> 
                 <CardContent>

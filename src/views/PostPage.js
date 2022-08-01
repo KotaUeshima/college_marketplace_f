@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import PostCard from './PostCard'
+import PostForm from './PostForm';
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
-function PostPage() {
+function PostPage({login, loggedIn}) {
 
     const [college, setCollege] = useState({})
     const [posts, setPosts] = useState([])
@@ -33,16 +34,21 @@ function PostPage() {
       />
     })
 
-    console.log(posts)
+    function addNewPost(data){
+      setPosts((posts) => [...posts, data])
+    }
     
     return (
-      <Container sx={{height: 1000, width: 1100}}>
-        <Box>
-          <Grid container spacing={5}>
-            {collegePosts}
-          </Grid>
-        </Box>
-      </Container>
+      <>
+        {loggedIn? <PostForm login={login} college={college} addNewPost={addNewPost}/> : null}
+        <Container sx={{height: 1000, width: 1100}}>
+          <Box>
+            <Grid container spacing={5}>
+              {collegePosts}
+            </Grid>
+          </Box>
+        </Container>
+      </>
     )
 }
 
