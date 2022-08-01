@@ -4,6 +4,7 @@ import LoginPage from './views/LoginPage';
 import CollegePage from './views/CollegePage';
 import PostPage from './views/PostPage';
 import NavBar from './views/NavBar';
+import UserPage from './views/UserPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/" element={<CollegePage />} />
           <Route path="/:college_name" element={<PostPage login={login} loggedIn={loggedIn}/>} />
           <Route path="/login" element={<LoginPage handleLoginState={handleLoginState}/>} />
+          <Route path="/my_posts" element={<UserPage login={login}/>} />
         </Routes>
       </BrowserRouter>
   );

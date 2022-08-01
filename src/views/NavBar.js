@@ -50,6 +50,9 @@ function NavBar({loggedIn, handleLoginState}) {
                     "Logout" : "Login"
                     }</Button>
                 </Link>
+                {loggedIn ? <Link to="/my_posts" >
+                    <Button color="inherit">"My posts"</Button>
+                </Link> : null}
             </Toolbar>
         </AppBar>
     </Box>

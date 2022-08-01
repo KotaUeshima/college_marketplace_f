@@ -31,7 +31,7 @@ function PostCard({post}) {
                   {item_name}
                 </Typography>
                 <Typography variant="h5">
-                  {price}
+                  $ {price}
                 </Typography>
                 <Typography variant="h5">
                   {phone_number}
