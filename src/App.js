@@ -33,7 +33,7 @@ function App() {
           <Route path="/" element={<CollegePage />} />
           <Route path="/:college_name" element={<PostPage login={login} loggedIn={loggedIn}/>} />
           <Route path="/login" element={<LoginPage handleLoginState={handleLoginState}/>} />
-          <Route path="/my_posts" element={<UserPage login={login}/>} />
+          <Route path="/my_posts" element={<UserPage login={login} loggedIn={loggedIn}/>} />
           <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       </BrowserRouter>
