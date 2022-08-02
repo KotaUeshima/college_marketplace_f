@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import CollegeCard from './CollegeCard'
+import "./CollegePage.css"
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -23,13 +24,15 @@ function CollegePage() {
     })
 
     return (
-      <Container sx={{height: 1000, width: 1100}}>
-        <Box>
-          <Grid container spacing={5}>
-            {collegeCards}
-          </Grid>
-        </Box>
-      </Container>
+      <div className="college_page">
+        <Container sx={{height: 1000, width: 1100}}>
+          <Box>
+            <Grid container spacing={5}>
+              {collegeCards}
+            </Grid>
+          </Box>
+        </Container>
+      </div>
     )
 }
 
