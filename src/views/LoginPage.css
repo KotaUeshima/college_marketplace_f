@@ -1,34 +1,15 @@
-.form__content{
-    background-color: white;
-    position: absolute;
-    top: calc(50% - 200px);
-    left: calc(50% - 150px);
-
-    border-radius: 10px;
-    width: 300px;
-    height: 210px;
-}
-
-.form__form{
+.login__form{
     display: grid;
-    grid-template-rows: 80px 80px 40px;
+    grid-template-rows: 10vh 10vh 10vh 10vh;
 
-    padding: 30px;
-    margin-top: 30px;
+    /* padding: 30px; */
 }
 
-.form__username{
-    grid-row: 1;
-}
-
-.form__password{
-    grid-row: 2;
-}
-
-.form__submit{
-    grid-row: 3;
-    width: 240px;
+.login__submit{
+    /* grid-row: 3; */
     height: 40px;
-    justify-self: end;
-    align-self: start;
+}
+
+.login__text{
+    /* grid-row:4 */
 }
