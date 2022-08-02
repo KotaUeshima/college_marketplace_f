@@ -13,14 +13,12 @@ function UserPage({login, loggedIn}) {
     .then(res => res.json())
     .then(mySetPosts)
     }, [])
-    
+
     const myPostList = myPosts.map((post, indx) => {
       return <PostCard
         key={indx}
         post={post}
         loggedIn={loggedIn}
-        myPosts={myPosts}
-        mySetPosts={mySetPosts}
       />
     })
 
