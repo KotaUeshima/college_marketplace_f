@@ -23,6 +23,7 @@ function LoginPage({handleLoginState}) {
         setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
     }
 
+
     function handleSubmit(e){
         e.preventDefault()
         fetch(`http://localhost:9292/users`,{

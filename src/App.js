@@ -6,6 +6,7 @@ import PostPage from './views/PostPage';
 import NavBar from './views/NavBar';
 import UserPage from './views/UserPage';
 import SignUpPage from './views/SignUpPage';
+import MoreInfoPage from './views/MoreInfoPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/login" element={<LoginPage handleLoginState={handleLoginState}/>} />
           <Route path="/my_posts" element={<UserPage login={login} loggedIn={loggedIn}/>} />
           <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/more_info/:id" element={<MoreInfoPage />} />
         </Routes>
       </BrowserRouter>
   );
