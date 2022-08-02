@@ -26,7 +26,6 @@ function App() {
     } 
   }
 
-
   return ( 
       <BrowserRouter>
         <NavBar loggedIn={loggedIn} handleLoginState={handleLoginState} login={login}/>

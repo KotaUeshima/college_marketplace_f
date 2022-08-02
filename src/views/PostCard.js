@@ -1,44 +1,68 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreIcon from '@mui/icons-material/More';
 import { Link } from 'react-router-dom';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import FormControl  from '@mui/material/FormControl'
+import InputLabel from "@mui/material/InputLabel"
+import Modal from "@mui/material/Modal"
+import FilledInput from '@mui/material/FilledInput'
 
 
-function PostCard({post, loggedIn}) {
 
-    const {item_name, image_url, price, phone_number} = post
+function PostCard({post, loggedIn, login, updatePost, deletePost}) {
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+  const {item_name, image_url, price, phone_number} = post
+  
+  const [formObj, setFormObj] = useState({
+    item_name: item_name,
+    image_url: image_url,
+    price: price,
+    phone_number: phone_number
+  })
 
     function handleDelete() {
       fetch(`http://localhost:9292/my_posts/${post.id}`, {
         method: "DELETE",
       })
+      .then(deletePost(post.id))
     }
 
+    function handleChange(e){
+        setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
+    }
 
-      const [open, setOpen] = React.useState(false);
-    
-      const handleClickOpen = () => {
-        setOpen(true);
-      };
-    
-      const handleClose = () => {
-        setOpen(false);
-      }
+    function handleSubmit(e){
+        e.preventDefault()
+        fetch(`http://localhost:9292/my_posts/${post.id}`,{
+          method: "PATCH",
+          headers: {
+            "Content-Type": 'application/json',
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(formObj)
+        })
+        .then(res => res.json())
+        .then(data => {
+          updatePost(data)
+            setFormObj({
+                item_name: "",
+                image_url: "",
+                price: 0,
+                phone_numnber: ""
+            })
+        })
+        handleClose()
+    }
   
 
     return (
@@ -57,71 +81,74 @@ function PostCard({post, loggedIn}) {
                 alt={item_name}
                 /> 
                 <CardContent>
-                <Typography variant="h5">
-                  {item_name}
-                </Typography>
-                <Typography variant="h5">
-                  $ {price}
-                </Typography>
-                <Typography variant="h5">
-                  {phone_number}
-                </Typography>
-                {loggedIn ? <EditIcon variant="outlined" onClick={handleClickOpen}>
-                  Open form dialog
-                </EditIcon> : null}
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Update</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Update item Name.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Item Name"
-            type="Name"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogContent>
-          <DialogContentText>
-            Update item Price.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="item price"
-            type="price"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogContent>
-          <DialogContentText>
-            Update phone number.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="phone number"
-            type="phone number"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Submit</Button>
-        </DialogActions>
-      </Dialog>
-                {loggedIn ? <DeleteIcon onClick={handleDelete}/> : null}
-                <Link to={`/more_info/${post.id}`}>
-                <MoreIcon/>
-                </Link>
+                  <Typography variant="h5">
+                    {item_name}
+                  </Typography>
+                  <Typography variant="h5">
+                    $ {price}
+                  </Typography>
+                  <Typography variant="h5">
+                    {phone_number}
+                  </Typography>
+                  <div className="postform">
+        {loggedIn ? <EditIcon variant='contained' onClick={handleOpen}>Open form</EditIcon> : null}
+        {loggedIn ? <DeleteIcon onClick={handleDelete}/> : null}
+        <Link to={`/more_info/${post.id}`}>
+        <MoreIcon/>
+        </Link>
+        <Modal open={open} onClose={handleClose}>
+        <div className="postform__content">
+            <form className="postform__form" onSubmit={handleSubmit}>
+                <FormControl className='postform__item_name'>
+                    <InputLabel htmlFor='item_name'>Item Name</InputLabel>
+                    <FilledInput
+                    id='item_name'
+                    type='text'
+                    value={formObj.item_name}
+                    onChange={handleChange}
+                    />
+                </FormControl>
+                <FormControl className='postform__image'>
+                    <InputLabel htmlFor='image_url' >Image URL</InputLabel>
+                    <FilledInput
+                    id='image_url'
+                    type='text'
+                    value={formObj.image_url}
+                    onChange={handleChange}
+                    />
+                </FormControl>
+                <FormControl className='postform__price'>
+                    <InputLabel htmlFor='price' >Price</InputLabel>
+                    <FilledInput
+                    id='price'
+                    type='text'
+                    value={formObj.price}
+                    onChange={handleChange}
+                    />
+                </FormControl>
+                <FormControl className='postform__phone_number'>
+                    <InputLabel htmlFor='phone_number' >Phone Number</InputLabel>
+                    <FilledInput
+                    id='phone_number'
+                    type='text'
+                    value={formObj.phone_number}
+                    onChange={handleChange}
+                    />
+                </FormControl>
+                <Button
+                variant="contained"
+                type="submit"
+                className='postform__submit'
+                >
+                Submit
+                </Button>
+            </form>
+        </div>
+        </Modal>
+    </div>
+                  {/* {loggedIn ? <EditIcon variant="outlined" onClick={handleOpen}>
+                    Open form dialog
+                    </EditIcon>: null} */}
               </CardContent>
             </Card>
         </Grid>

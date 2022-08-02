@@ -25,18 +25,21 @@ function PostPage({login, loggedIn}) {
       fetch(`http://localhost:9292/colleges/${college_name}/posts`)
       .then(res => res.json())
       .then(setPosts)}
-    ,[college])
+      ,[college])
+
+    function addNewPost(data){
+      setPosts((posts) => [...posts, data])
+    }
+
 
     const collegePosts = posts.map((post, indx) => {
       return <PostCard
         key={indx}
         post={post}
+        login={login}
       />
     })
 
-    function addNewPost(data){
-      setPosts((posts) => [...posts, data])
-    }
     
     return (
       <>

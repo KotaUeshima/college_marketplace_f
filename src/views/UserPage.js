@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 
 function UserPage({login, loggedIn}) {
   const [myPosts, mySetPosts] = useState([])
+  console.log(login)
 
     useEffect(() => {
     fetch(`http://localhost:9292/my_posts/${login.id}`)
@@ -14,11 +15,35 @@ function UserPage({login, loggedIn}) {
     .then(mySetPosts)
     }, [])
 
+    function updatePost(data){
+      const updatedPosts = myPosts.map((mp) => {
+        if (mp.id === data.id) {
+          return data
+        } else {
+          return mp
+        }
+      })
+      mySetPosts((updatedPosts))
+    }
+
+    function deletePost(id) {
+      const deletedPosts = myPosts.filter((mp) => {
+        if (mp.id === id) {
+          return false
+        } else {
+          return true
+        }
+      })
+      mySetPosts((deletedPosts))
+    }
+
     const myPostList = myPosts.map((post, indx) => {
       return <PostCard
         key={indx}
         post={post}
         loggedIn={loggedIn}
+        updatePost={updatePost}
+        deletePost={deletePost}
       />
     })
 
