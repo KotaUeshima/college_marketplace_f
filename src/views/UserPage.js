@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
-function UserPage({login}) {
+function UserPage({login, loggedIn}) {
   const [myPosts, mySetPosts] = useState([])
 
     useEffect(() => {
@@ -18,6 +18,9 @@ function UserPage({login}) {
       return <PostCard
         key={indx}
         post={post}
+        loggedIn={loggedIn}
+        myPosts={myPosts}
+        mySetPosts={mySetPosts}
       />
     })
 
