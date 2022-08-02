@@ -28,7 +28,7 @@ function App() {
 
   return ( 
       <BrowserRouter>
-        <NavBar loggedIn={loggedIn} handleLoginState={handleLoginState}/>
+        <NavBar loggedIn={loggedIn} handleLoginState={handleLoginState} login={login}/>
         <Routes>
           <Route path="/" element={<CollegePage />} />
           <Route path="/:college_name" element={<PostPage login={login} loggedIn={loggedIn}/>} />

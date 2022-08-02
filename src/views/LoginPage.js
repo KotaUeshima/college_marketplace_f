@@ -88,7 +88,7 @@ function LoginPage({handleLoginState}) {
           Login
           </Button>
           <div className="login__text">
-            <Typography>Don't have an account?
+            <Typography>{"Don't have an account? "}
               <Link to="/signup">
                  Sign Up Here
               </Link>
