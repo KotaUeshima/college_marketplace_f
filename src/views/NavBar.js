@@ -27,7 +27,7 @@ function NavBar({loggedIn, handleLoginState}) {
                 color='primary'
                 style={{backgroundColor:'white', color:'blue'}}
                 // icon ={<TravelExploreIcon/>} 
-                label="College Exchange"
+                label="College Marketplace"
                 />
                 {/* Empty Typography Just For Spacing */}
                 <Typography

@@ -1,64 +1,65 @@
 import React, {useState} from 'react'
-import './LoginPage.css'
-import {useNavigate, Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Avatar from '@mui/material/Avatar'
 import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
+import Alert from '@mui/material/Alert'
 
-import LoginIcon from '@mui/icons-material/Login';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-function LoginPage({handleLoginState}) {
+
+function SignUpPage() {
 
     const [formObj, setFormObj] = useState({
-      username: "",
-      password: ""
+        username: "",
+        password: ""
     })
-    let navigate = useNavigate()
+    const [errorMessage, setErrorMessage] = useState("")
 
+    let navigate = useNavigate()
+  
     function handleChange(e){
         setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
     }
-
+  
     function handleSubmit(e){
         e.preventDefault()
-        fetch(`http://localhost:9292/users`,{
-          method: "POST",
-          headers: {
+        fetch(`http://localhost:9292/create_account`,{
+        method: "POST",
+        headers: {
             "Content-Type": 'application/json',
             "Accept": "application/json"
-          },
-          body: JSON.stringify(formObj)
+        },
+        body: JSON.stringify(formObj)
         })
         .then(res => res.json())
         .then((data) => {
-          setFormObj({
-            username: "",
-            password: ""
-          })
-          if (data == null){
-            alert("Incorrect login")
-          }
-          else{
-            alert(`Welcome Back ${data.username}!`)
-            navigate("/")
-            handleLoginState(data)
-          }      
+            if(data != "Error"){
+                navigate("/login")
+                setErrorMessage("")
+                setFormObj({
+                    username: "",
+                    password: ""
+                })
+            }
+            else{
+                setErrorMessage("Username Already Exists")
+            }
         })
-      }
-
-      const paperStyle = {padding: 20, height:'60vh', width: 280, margin: "50px auto"}
-      const avatarStyle = {backgroundColor: 'green'}
+    }
+  
+    const paperStyle = {padding: 20, height:'55vh', width: 280, margin: "50px auto"}
+    const avatarStyle = {backgroundColor: 'green'}
 
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
         <Grid align='center'>
-          <Avatar style={avatarStyle}><LoginIcon/></Avatar>
-          <h2>Login</h2>
+          <Avatar style={avatarStyle}><AccountCircleIcon/></Avatar>
+          <h2>Create An Account</h2>
         </Grid>
       <form className="login__form" onSubmit={handleSubmit}>
           <TextField
@@ -76,28 +77,21 @@ function LoginPage({handleLoginState}) {
           value={formObj.password}
           onChange={handleChange}
           placeholder="Enter password"
-          type='password'
           fullwidth
           required/>
           <Button
           variant="contained"
           type="submit"
           className='login__submit'
-          fullwidth
+          fullWidth
           >
-          Login
+          Create Account
           </Button>
-          <div className="login__text">
-            <Typography>Don't have an account?
-              <Link to="/signup">
-                 Sign Up Here
-              </Link>
-            </Typography>
-          </div>    
+          {(errorMessage == "")? null : <Alert variant="outlined" severity="error">{errorMessage}</Alert>}
       </form>
-    </Paper>
+      </Paper>
     </Grid>
   )
 }
 
-export default LoginPage
+export default SignUpPage  
