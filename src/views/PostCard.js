@@ -79,6 +79,13 @@ function PostCard({post, updatePost, deletePost}) {
     const titleStyle = {
       textAlign: 'center'
     }
+
+    const string = '^/images'
+    const regexp = new RegExp(string)
+    let image = image_url
+    if(regexp.test(image) == true){
+      image = `http://localhost:9292/${image_url}`
+    }
   
     return (
         <Grid item xs={3}>
@@ -92,7 +99,7 @@ function PostCard({post, updatePost, deletePost}) {
                 <CardMedia
                 component="img"
                 height="160"
-                image={image_url}
+                image={image}
                 alt={item_name}
                 /> 
                 <CardContent>
