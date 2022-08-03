@@ -14,15 +14,26 @@ import FormControl  from '@mui/material/FormControl'
 import InputLabel from "@mui/material/InputLabel"
 import Modal from "@mui/material/Modal"
 import FilledInput from '@mui/material/FilledInput'
+import { useRecoilValue } from 'recoil';
+import { loggedIn } from './atoms';
+import { userState } from './atoms';
 
-
-
-function PostCard({post, loggedIn, login, updatePost, deletePost}) {
+function PostCard({post, updatePost, deletePost}) {
 
     const [open, setOpen] = React.useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
     const {item_name, image_url, price, phone_number} = post
+    const recoilLogin = useRecoilValue(loggedIn)
+    const user = useRecoilValue(userState)
+
+    let showIcons = false
+
+    if (recoilLogin){
+      if (user.id === post.user_id){
+        showIcons = true
+      }
+    }
     
     const [formObj, setFormObj] = useState({
       item_name: item_name,
@@ -69,7 +80,6 @@ function PostCard({post, loggedIn, login, updatePost, deletePost}) {
       textAlign: 'center'
     }
   
-
     return (
         <Grid item xs={3}>
             <Card 
@@ -96,8 +106,8 @@ function PostCard({post, loggedIn, login, updatePost, deletePost}) {
                     {phone_number}
                   </Typography>
                   <div className="postform">
-        {loggedIn ? <EditIcon variant='contained' onClick={handleOpen}>Open form</EditIcon> : null}
-        {loggedIn ? <DeleteIcon onClick={handleDelete}/> : null}
+        {showIcons ? <EditIcon variant='contained' onClick={handleOpen}>Open form</EditIcon> : null}
+        {showIcons ? <DeleteIcon onClick={handleDelete}/> : null}
         <Link to={`/more_info/${post.id}`}>
         <MoreIcon/>
         </Link>
@@ -151,9 +161,6 @@ function PostCard({post, loggedIn, login, updatePost, deletePost}) {
           </div>
         </Modal>
     </div>
-                  {/* {loggedIn ? <EditIcon variant="outlined" onClick={handleOpen}>
-                    Open form dialog
-                    </EditIcon>: null} */}
               </CardContent>
             </Card>
         </Grid>

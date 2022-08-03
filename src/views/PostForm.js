@@ -6,9 +6,12 @@ import InputLabel from "@mui/material/InputLabel"
 import Modal from "@mui/material/Modal"
 import FilledInput from '@mui/material/FilledInput'
 import Button from '@mui/material/Button'
+import { useRecoilValue } from 'recoil'
+import { userState } from './atoms'
 
-function PostForm({login, college, addNewPost}) {
+function PostForm({college, addNewPost}) {
     const [open, setOpen] = useState(false)
+    const user = useRecoilValue(userState)
 
     const [formObj, setFormObj] = useState({
         item_name: "",
@@ -23,7 +26,7 @@ function PostForm({login, college, addNewPost}) {
 
     function handleSubmit(e){
         e.preventDefault()
-        const updatedObj = {...formObj, user_id: login.id,
+        const updatedObj = {...formObj, user_id: user.id,
             college_id: college.id}
         fetch(`http://localhost:9292/newpost`,{
           method: "POST",

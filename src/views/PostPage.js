@@ -6,11 +6,14 @@ import PostForm from './PostForm';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import { useRecoilValue } from 'recoil';
+import { loggedIn } from './atoms';
 
-function PostPage({login, loggedIn}) {
+function PostPage({login}) {
 
     const [college, setCollege] = useState({})
     const [posts, setPosts] = useState([])
+    const recoilLogin = useRecoilValue(loggedIn)
 
     const {college_name} = useParams()
     // useParams = {college_name: Notre Dame}//
@@ -36,18 +39,16 @@ function PostPage({login, loggedIn}) {
       return <PostCard
         key={indx}
         post={post}
-        login={login}
       />
     })
 
     const  rootStyle = { marginTop: '70px' }
-
     const formButtonStyle = {marginTop: '8px'}
     
     return (
       <>
         <div style={formButtonStyle}>
-          {loggedIn? <PostForm login={login} college={college} addNewPost={addNewPost}/> : null}
+          {recoilLogin? <PostForm college={college} addNewPost={addNewPost}/> : null}
         </div>
         <Container style={rootStyle} sx={{height: 1000, width: 1100}}>
           <Box>

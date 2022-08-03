@@ -12,18 +12,23 @@ import Divider from '@mui/material/Divider';
 
 import HomeIcon from '@mui/icons-material/Home';
 import SchoolIcon from '@mui/icons-material/School';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { loggedIn, userState } from './atoms';
 
-function NavBar({loggedIn, handleLoginState, login}) {
+
+function NavBar() {
+
+    const [recoilLogin, setRecoilLogin] = useRecoilState(loggedIn)
+    const user = useRecoilValue(userState)
 
     function handleLogOut(){
-        if(loggedIn){
-            handleLoginState()
+        if(recoilLogin){
+            setRecoilLogin(false)
         }
     }
 
     const appStyle = {background: 'transparent', boxShadow: 'none'}
     const linkStyle = {textDecoration: 'none', color: '#E27D60'}
-
     const location = useLocation()
 
   return (
@@ -44,7 +49,7 @@ function NavBar({loggedIn, handleLoginState, login}) {
                     sx={{ flexGrow: 1, ml: 4}}
                     style={{color:'#E27D60'}}
                     >
-                    {loggedIn? `Welcome Back ${login.username}!` : null}
+                    {recoilLogin? `Welcome Back ${user.username}!` : null}
                     </Typography>
                     <Link to="/colleges" style={linkStyle}>
                         <IconButton
@@ -57,13 +62,13 @@ function NavBar({loggedIn, handleLoginState, login}) {
                             <HomeIcon/>   
                         </IconButton>
                     </Link> 
-                    {loggedIn ? 
+                    {recoilLogin ? 
                     <Link to="/my_posts" style={linkStyle}>
                         <Button color="inherit">My posts</Button>
                     </Link> : null}
-                    <Link to={loggedIn? "/colleges" : "/login"} style={linkStyle}>
+                    <Link to={recoilLogin? "/colleges" : "/login"} style={linkStyle}>
                         <Button onClick={handleLogOut} color="inherit">
-                        {loggedIn? "Logout" : "Login"}
+                        {recoilLogin? "Logout" : "Login"}
                         </Button>
                     </Link>
                 </Toolbar>
