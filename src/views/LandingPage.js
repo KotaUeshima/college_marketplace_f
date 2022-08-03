@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box'
 import Grow from '@mui/material/Grow';
@@ -38,6 +39,7 @@ function LandingPage() {
         setChecked(true)
     }, [])
 
+
   return (
     <Box style={rootStyle}>
       <Grow
@@ -47,8 +49,12 @@ function LandingPage() {
       > 
         <div>
             <h1 style={textStyle}>Welcome to <br /><span style={collegeColor}>College</span> Marketplace</h1>
-            <Button style={buttonStyle} variant="text">Continue As Guest</Button>
-            <Button style={buttonStyle}>Login</Button>
+            <Link style={{textDecoration: "none"}} to="/colleges">  
+                <Button style={buttonStyle} variant="text">Continue As Guest</Button>
+            </Link>
+            <Link style={{textDecoration: "none"}} to="/login">   
+                <Button style={buttonStyle}>Login</Button>
+            </Link> 
         </div>
       </Grow>
     </Box>
