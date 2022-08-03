@@ -27,7 +27,7 @@ function NavBar() {
         }
     }
 
-    const appStyle = {background: 'transparent', boxShadow: 'none'}
+    const appStyle = {background: '#014980', boxShadow: 'none'}
     const linkStyle = {textDecoration: 'none', color: '#E27D60'}
     const location = useLocation()
 
@@ -35,12 +35,15 @@ function NavBar() {
     <>
         {(location.pathname == "/")? null :
         <Box sx={{flexGrow: 1}}>
-            <AppBar style={appStyle} elevation={0} position="static">
+            <AppBar 
+            style={appStyle} 
+            elevation={0} 
+            position="sticky">
                 <Toolbar>
                     <Link to="/colleges" style={{ textDecoration: 'none' }}>
                         <Chip
                         color='primary'
-                        style={{backgroundColor:'#6ce1f2', color:'#E27D60'}}
+                        style={{backgroundColor:'#014980', color:'#E27D60'}}
                         icon ={<SchoolIcon/>} 
                         label="College Marketplace"
                         />
