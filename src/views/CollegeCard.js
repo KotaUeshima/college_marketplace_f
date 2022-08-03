@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 function CollegeCard({college}) {
@@ -11,27 +12,25 @@ function CollegeCard({college}) {
     const {college_name, image_url} = college
 
     return (
-      <Grid item xs={2}>
+      <Grid item sm={4}>
           <Link to={`/${college_name}`}>
             <Card 
-            sx={{
-                ':hover': {
-                  boxShadow: 20,
-                }
-            }}
+            sx={{ ':hover': {boxShadow: 20,}}}
             >
-              <Typography variant='h4'>
-                {college_name}
-              </Typography>
                 <CardMedia
                 component="img"
-                height="160"
+                height="275"
                 image={image_url}
                 alt={college_name}
-                /> 
-                <Typography variant='subtitle2'>
+                />
+                <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {college_name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
                   Click to see whats for sale!
                 </Typography>
+                </CardContent>
             </Card>
           </Link>
       </Grid>
