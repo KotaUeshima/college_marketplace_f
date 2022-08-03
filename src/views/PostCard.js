@@ -18,17 +18,18 @@ import FilledInput from '@mui/material/FilledInput'
 
 
 function PostCard({post, loggedIn, login, updatePost, deletePost}) {
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-  const {item_name, image_url, price, phone_number} = post
-  
-  const [formObj, setFormObj] = useState({
-    item_name: item_name,
-    image_url: image_url,
-    price: price,
-    phone_number: phone_number
-  })
+
+    const [open, setOpen] = React.useState(false)
+    const handleOpen = () => setOpen(true)
+    const handleClose = () => setOpen(false)
+    const {item_name, image_url, price, phone_number} = post
+    
+    const [formObj, setFormObj] = useState({
+      item_name: item_name,
+      image_url: image_url,
+      price: price,
+      phone_number: phone_number
+    })
 
     function handleDelete() {
       fetch(`http://localhost:9292/my_posts/${post.id}`, {
@@ -63,6 +64,10 @@ function PostCard({post, loggedIn, login, updatePost, deletePost}) {
         })
         handleClose()
     }
+
+    const titleStyle = {
+      textAlign: 'center'
+    }
   
 
     return (
@@ -81,13 +86,13 @@ function PostCard({post, loggedIn, login, updatePost, deletePost}) {
                 alt={item_name}
                 /> 
                 <CardContent>
-                  <Typography variant="h5">
+                  <Typography style={titleStyle} variant="h5">
                     {item_name}
                   </Typography>
-                  <Typography variant="h5">
+                  <Typography variant="body2">
                     $ {price}
                   </Typography>
-                  <Typography variant="h5">
+                  <Typography variant="body2">
                     {phone_number}
                   </Typography>
                   <div className="postform">
@@ -97,53 +102,53 @@ function PostCard({post, loggedIn, login, updatePost, deletePost}) {
         <MoreIcon/>
         </Link>
         <Modal open={open} onClose={handleClose}>
-        <div className="postform__content">
-            <form className="postform__form" onSubmit={handleSubmit}>
-                <FormControl className='postform__item_name'>
-                    <InputLabel htmlFor='item_name'>Item Name</InputLabel>
-                    <FilledInput
-                    id='item_name'
-                    type='text'
-                    value={formObj.item_name}
-                    onChange={handleChange}
-                    />
-                </FormControl>
-                <FormControl className='postform__image'>
-                    <InputLabel htmlFor='image_url' >Image URL</InputLabel>
-                    <FilledInput
-                    id='image_url'
-                    type='text'
-                    value={formObj.image_url}
-                    onChange={handleChange}
-                    />
-                </FormControl>
-                <FormControl className='postform__price'>
-                    <InputLabel htmlFor='price' >Price</InputLabel>
-                    <FilledInput
-                    id='price'
-                    type='text'
-                    value={formObj.price}
-                    onChange={handleChange}
-                    />
-                </FormControl>
-                <FormControl className='postform__phone_number'>
-                    <InputLabel htmlFor='phone_number' >Phone Number</InputLabel>
-                    <FilledInput
-                    id='phone_number'
-                    type='text'
-                    value={formObj.phone_number}
-                    onChange={handleChange}
-                    />
-                </FormControl>
-                <Button
-                variant="contained"
-                type="submit"
-                className='postform__submit'
-                >
-                Submit
-                </Button>
-            </form>
-        </div>
+          <div className="postform__content">
+              <form className="postform__form" onSubmit={handleSubmit}>
+                  <FormControl className='postform__item_name'>
+                      <InputLabel htmlFor='item_name'>Item Name</InputLabel>
+                      <FilledInput
+                      id='item_name'
+                      type='text'
+                      value={formObj.item_name}
+                      onChange={handleChange}
+                      />
+                  </FormControl>
+                  <FormControl className='postform__image'>
+                      <InputLabel htmlFor='image_url' >Image URL</InputLabel>
+                      <FilledInput
+                      id='image_url'
+                      type='text'
+                      value={formObj.image_url}
+                      onChange={handleChange}
+                      />
+                  </FormControl>
+                  <FormControl className='postform__price'>
+                      <InputLabel htmlFor='price' >Price</InputLabel>
+                      <FilledInput
+                      id='price'
+                      type='text'
+                      value={formObj.price}
+                      onChange={handleChange}
+                      />
+                  </FormControl>
+                  <FormControl className='postform__phone_number'>
+                      <InputLabel htmlFor='phone_number' >Phone Number</InputLabel>
+                      <FilledInput
+                      id='phone_number'
+                      type='text'
+                      value={formObj.phone_number}
+                      onChange={handleChange}
+                      />
+                  </FormControl>
+                  <Button
+                  variant="contained"
+                  type="submit"
+                  className='postform__submit'
+                  >
+                  Submit
+                  </Button>
+              </form>
+          </div>
         </Modal>
     </div>
                   {/* {loggedIn ? <EditIcon variant="outlined" onClick={handleOpen}>

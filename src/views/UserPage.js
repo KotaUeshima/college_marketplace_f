@@ -6,8 +6,8 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
 function UserPage({login, loggedIn}) {
-  const [myPosts, mySetPosts] = useState([])
-  console.log(login)
+   
+    const [myPosts, mySetPosts] = useState([])
 
     useEffect(() => {
     fetch(`http://localhost:9292/my_posts/${login.id}`)

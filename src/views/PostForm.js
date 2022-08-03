@@ -49,9 +49,11 @@ function PostForm({login, college, addNewPost}) {
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
+    const buttonPlacement = {alignSelf: "center"}
+
   return (
     <div className="postform">
-        <Button variant='contained' onClick={handleOpen}>Create a New Post</Button>
+        <Button style={buttonPlacement} variant='contained' onClick={handleOpen}>Create a New Post</Button>
         <Modal open={open} onClose={handleClose}>
         <div className="postform__content">
             <form className="postform__form" onSubmit={handleSubmit}>
