@@ -4,13 +4,16 @@ import PostCard from './PostCard'
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import { useRecoilValue } from 'recoil';
+import { userState } from './atoms';
 
-function UserPage({login, loggedIn}) {
-   
+function UserPage() {
+
     const [myPosts, mySetPosts] = useState([])
+    const user = useRecoilValue(userState)
 
     useEffect(() => {
-    fetch(`http://localhost:9292/my_posts/${login.id}`)
+    fetch(`http://localhost:9292/my_posts/${user.id}`)
     .then(res => res.json())
     .then(mySetPosts)
     }, [])
@@ -41,7 +44,6 @@ function UserPage({login, loggedIn}) {
       return <PostCard
         key={indx}
         post={post}
-        loggedIn={loggedIn}
         updatePost={updatePost}
         deletePost={deletePost}
       />

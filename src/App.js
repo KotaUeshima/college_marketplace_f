@@ -12,33 +12,15 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
 
-  const [login, setLogin] = useState({})
-  const loggedIn = (JSON.stringify(login) !== '{}')
-
-  function handleLoginState(data){
-    if(!loggedIn){
-      setLogin({
-        id: data.id,
-        username: data.username
-      })
-    }
-    else{
-      setLogin({})
-    } 
-  }
-
- 
-  const atLandingPage = (window.location.pathname == "/")
-
   return ( 
     <>
         <BrowserRouter>
-          <NavBar loggedIn={loggedIn} handleLoginState={handleLoginState} login={login}/>
+          <NavBar />
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/:college_name" element={<PostPage login={login} loggedIn={loggedIn}/>} />
-            <Route path="/login" element={<LoginPage handleLoginState={handleLoginState}/>} />
-            <Route path="/my_posts" element={<UserPage login={login} loggedIn={loggedIn}/>} />
+            <Route path="/:college_name" element={<PostPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/my_posts" element={<UserPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/more_info/:id" element={<MoreInfoPage />} />
             <Route path="/colleges" element={<CollegePage />} />

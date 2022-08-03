@@ -8,10 +8,15 @@ import Paper from '@mui/material/Paper'
 import Avatar from '@mui/material/Avatar'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-
 import LoginIcon from '@mui/icons-material/Login';
+import { userState } from './atoms'
+import { loggedIn } from './atoms'
+import { useSetRecoilState } from 'recoil'
 
-function LoginPage({handleLoginState}) {
+function LoginPage() {
+
+    const setLoggedIn = useSetRecoilState(loggedIn)
+    const setUserState = useSetRecoilState(userState)
 
     const [formObj, setFormObj] = useState({
       username: "",
@@ -47,14 +52,14 @@ function LoginPage({handleLoginState}) {
           else{
             alert(`Welcome Back ${data.username}!`)
             navigate("/colleges")
-            handleLoginState(data)
+            setUserState(data)
+            setLoggedIn(true)
           }      
         })
       }
 
       const paperStyle = {padding: 20, height:'60vh', width: 280, margin: "50px auto"}
       const avatarStyle = {backgroundColor: 'green'}
-
       const image = "https://i.pinimg.com/originals/5a/65/37/5a653708fd9248867cb90a09919a40e8.jpg"
 
   return (

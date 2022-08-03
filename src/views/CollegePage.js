@@ -8,8 +8,8 @@ import Box from '@mui/material/Box';
 
 function CollegePage() {
 
-    const [colleges, setColleges] = useState([])
-    
+  const [colleges, setColleges] = useState([])
+
     useEffect(() => {
       fetch("http://localhost:9292/colleges")
       .then(res => res.json())
