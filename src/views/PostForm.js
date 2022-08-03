@@ -6,6 +6,7 @@ import InputLabel from "@mui/material/InputLabel"
 import Modal from "@mui/material/Modal"
 import FilledInput from '@mui/material/FilledInput'
 import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
 import { useRecoilValue } from 'recoil'
 import { userState } from './atoms'
 
@@ -15,29 +16,38 @@ function PostForm({college, addNewPost}) {
 
     const [formObj, setFormObj] = useState({
         item_name: "",
-        image_url: "",
         price: 0,
         phone_number: ""
     })
+
+    const [imageFile, setImageFile] = useState()
 
     function handleChange(e){
         setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
     }
 
+    function handleImageChange(e){
+        setImageFile(e.target.files[0])
+    }
+
     function handleSubmit(e){
         e.preventDefault()
-        const updatedObj = {...formObj, user_id: user.id,
-            college_id: college.id}
+        // const updatedObj = {...formObj, user_id: user.id,
+        //     college_id: college.id}
+        const formData = new FormData()
+        formData.append('image', imageFile)
+        formData.append('item_name', formObj.item_name)
+        formData.append('price', formObj.price)
+        formData.append('phone_number', formObj.phone_number)
+        formData.append('user_id', user.id)
+        formData.append('college_id', college.id)
         fetch(`http://localhost:9292/newpost`,{
           method: "POST",
-          headers: {
-            "Content-Type": 'application/json',
-            "Accept": "application/json"
-          },
-          body: JSON.stringify(updatedObj)
+          body: formData,
         })
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             addNewPost(data)
             setFormObj({
                 item_name: "",
@@ -52,50 +62,48 @@ function PostForm({college, addNewPost}) {
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
-    const buttonPlacement = {alignSelf: "center"}
 
   return (
     <div className="postform">
-        <Button style={buttonPlacement} variant='contained' onClick={handleOpen}>Create a New Post</Button>
+        <Button variant='contained' onClick={handleOpen}>Create a New Post</Button>
         <Modal open={open} onClose={handleClose}>
         <div className="postform__content">
             <form className="postform__form" onSubmit={handleSubmit}>
-                <FormControl className='postform__item_name'>
-                    <InputLabel htmlFor='item_name'>Item Name</InputLabel>
-                    <FilledInput
-                    id='item_name'
-                    type='text'
-                    value={formObj.item_name}
-                    onChange={handleChange}
-                    />
-                </FormControl>
-                <FormControl className='postform__image'>
-                    <InputLabel htmlFor='image_url' >Image URL</InputLabel>
-                    <FilledInput
-                    id='image_url'
-                    type='text'
-                    value={formObj.image_url}
-                    onChange={handleChange}
-                    />
-                </FormControl>
-                <FormControl className='postform__price'>
-                    <InputLabel htmlFor='price' >Price</InputLabel>
-                    <FilledInput
-                    id='price'
-                    type='text'
-                    value={formObj.price}
-                    onChange={handleChange}
-                    />
-                </FormControl>
-                <FormControl className='postform__phone_number'>
-                    <InputLabel htmlFor='phone_number' >Phone Number</InputLabel>
-                    <FilledInput
-                    id='phone_number'
-                    type='text'
-                    value={formObj.phone_number}
-                    onChange={handleChange}
-                    />
-                </FormControl>
+                <TextField
+                className='postform__item_name'
+                label="Item_name"
+                id='item_name'
+                value={formObj.item_name}
+                onChange={handleChange}
+                placeholder="Enter item name"
+                fullwidth
+                required
+                />
+                <input 
+                className='postform__image'
+                type="file"
+                onChange={handleImageChange}
+                />
+                <TextField
+                className='postform__price'
+                label="Price"
+                id='price'
+                value={formObj.price}
+                onChange={handleChange}
+                placeholder="Enter price:"
+                fullwidth
+                required
+                />
+                <TextField
+                className='postform__phone_number'
+                label="Phone Number"
+                id='phone_number'
+                value={formObj.phone_number}
+                onChange={handleChange}
+                placeholder="Enter phone number:"
+                fullwidth
+                required
+                />
                 <Button
                 variant="contained"
                 type="submit"

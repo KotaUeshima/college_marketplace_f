@@ -33,6 +33,13 @@ function MoreInfoPage() {
     textAlign: 'center'
   }
 
+  const string = '^/images'
+  const regexp = new RegExp(string)
+  let image = image_url
+  if(regexp.test(image) == true){
+    image = `http://localhost:9292/${image_url}`
+  }
+
   return (
     <Container  style={boxStyle} sx={{height: 1000, width: 1100}}>
         <Box>
@@ -46,7 +53,7 @@ function MoreInfoPage() {
               <CardMedia
               component="img"
               height= '450'
-              image={image_url}
+              image={image}
               alt={item_name}
               /> 
               <CardContent>
