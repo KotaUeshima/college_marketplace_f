@@ -17,6 +17,7 @@ function LoginPage({handleLoginState}) {
       username: "",
       password: ""
     })
+
     let navigate = useNavigate()
 
     function handleChange(e){
@@ -54,50 +55,52 @@ function LoginPage({handleLoginState}) {
       const paperStyle = {padding: 20, height:'60vh', width: 280, margin: "50px auto"}
       const avatarStyle = {backgroundColor: 'green'}
 
+      const image = "https://i.pinimg.com/originals/5a/65/37/5a653708fd9248867cb90a09919a40e8.jpg"
+
   return (
-    <Grid>
-      <Paper elevation={10} style={paperStyle}>
-        <Grid align='center'>
-          <Avatar style={avatarStyle}><LoginIcon/></Avatar>
-          <h2>Login</h2>
-        </Grid>
-      <form className="login__form" onSubmit={handleSubmit}>
-          <TextField
-          label="Username"
-          id='username'
-          value={formObj.username}
-          onChange={handleChange}
-          placeholder="Enter username"
-          fullwidth
-          required
-          />
-          <TextField
-          label="Password"
-          id='password'
-          value={formObj.password}
-          onChange={handleChange}
-          placeholder="Enter password"
-          type='password'
-          fullwidth
-          required/>
-          <Button
-          variant="contained"
-          type="submit"
-          className='login__submit'
-          fullwidth
-          >
-          Login
-          </Button>
-          <div className="login__text">
-            <Typography>{"Don't have an account? "}
-              <Link to="/signup">
-                 Sign Up Here
-              </Link>
-            </Typography>
-          </div>    
-      </form>
-    </Paper>
-    </Grid>
+      <Grid>
+        <Paper elevation={10} style={paperStyle}>
+          <Grid align='center'>
+            <Avatar style={avatarStyle}><LoginIcon/></Avatar>
+            <h2>Login</h2>
+          </Grid>
+        <form className="login__form" onSubmit={handleSubmit}>
+            <TextField
+            label="Username"
+            id='username'
+            value={formObj.username}
+            onChange={handleChange}
+            placeholder="Enter username"
+            fullwidth
+            required
+            />
+            <TextField
+            label="Password"
+            id='password'
+            value={formObj.password}
+            onChange={handleChange}
+            placeholder="Enter password"
+            type='password'
+            fullwidth
+            required/>
+            <Button
+            variant="contained"
+            type="submit"
+            className='login__submit'
+            fullwidth
+            >
+            Login
+            </Button>
+            <div className="login__text">
+              <Typography>{"Don't have an account? "}
+                <Link to="/signup">
+                  Sign Up Here
+                </Link>
+              </Typography>
+            </div>    
+        </form>
+      </Paper>
+      </Grid>
   )
 }
 

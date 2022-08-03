@@ -20,9 +20,11 @@ function NavBar({loggedIn, handleLoginState, login}) {
         }
     }
 
+    //const appStyle = {background: 'transparent', boxShadow: 'none'}
+
   return (
     <Box sx={{flexGrow: 1}}>
-        <AppBar sx={{background: "navy"}} position="static">
+        <AppBar sx={{background: "navy"}} elevation={0} position="static">
             <Toolbar>
                 <Link to="/" style={{ textDecoration: 'none' }}>
                     <Chip

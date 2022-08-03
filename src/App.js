@@ -7,6 +7,7 @@ import NavBar from './views/NavBar';
 import UserPage from './views/UserPage';
 import SignUpPage from './views/SignUpPage';
 import MoreInfoPage from './views/MoreInfoPage';
+import LandingPage from './views/LandingPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/my_posts" element={<UserPage login={login} loggedIn={loggedIn}/>} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/more_info/:id" element={<MoreInfoPage />} />
+          <Route path="/landing" element={<LandingPage />} />
         </Routes>
       </BrowserRouter>
   );
