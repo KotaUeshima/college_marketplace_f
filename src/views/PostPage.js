@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import { useRecoilValue } from 'recoil';
 import { loggedIn } from './atoms';
 
-function PostPage({login}) {
+function PostPage() {
 
     const [college, setCollege] = useState({})
     const [posts, setPosts] = useState([])

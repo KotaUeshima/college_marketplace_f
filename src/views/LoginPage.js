@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Avatar from '@mui/material/Avatar'
 import TextField from '@mui/material/TextField'
+import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import LoginIcon from '@mui/icons-material/Login';
 import { userState } from './atoms'
@@ -58,54 +59,64 @@ function LoginPage() {
         })
       }
 
-      const paperStyle = {padding: 20, height:'60vh', width: 280, margin: "50px auto"}
+      const paperStyle = {padding: 20, height:'60vh', width: 280, margin: "auto"}
       const avatarStyle = {backgroundColor: 'green'}
-      const image = "https://i.pinimg.com/originals/5a/65/37/5a653708fd9248867cb90a09919a40e8.jpg"
+      const image = 'https://a-static.besthdwallpaper.com/lofi-chill-bedroom-wallpaper-2560x1600-85077_7.jpg'
+      const background = {
+        minHeight: '93vh',
+        backgroundImage: `url(${image})`,
+        backgroundSize: 'cover',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }
 
   return (
-      <Grid>
-        <Paper elevation={10} style={paperStyle}>
-          <Grid align='center'>
-            <Avatar style={avatarStyle}><LoginIcon/></Avatar>
-            <h2>Login</h2>
-          </Grid>
-          <form className="login__form" onSubmit={handleSubmit}>
-              <TextField
-              label="Username"
-              id='username'
-              value={formObj.username}
-              onChange={handleChange}
-              placeholder="Enter username"
-              fullwidth
-              required
-              />
-              <TextField
-              label="Password"
-              id='password'
-              value={formObj.password}
-              onChange={handleChange}
-              placeholder="Enter password"
-              type='password'
-              fullwidth
-              required/>
-              <Button
-              variant="contained"
-              type="submit"
-              className='login__submit'
-              fullwidth
-              >
-              Login
-              </Button>
-              <div className="login__text">
-                <Typography>{"Don't have an account? "}
-                  <Link to="/signup">
-                    Sign Up Here
-                  </Link>
-                </Typography>
-              </div>    
-          </form>
-        </Paper>
-      </Grid>
+    <Box style={background}>
+        <Grid>
+          <Paper elevation={20} style={paperStyle}>
+            <Grid align='center'>
+              <Avatar style={avatarStyle}><LoginIcon/></Avatar>
+              <h2>Login</h2>
+            </Grid>
+            <form className="login__form" onSubmit={handleSubmit}>
+                <TextField
+                label="Username"
+                id='username'
+                value={formObj.username}
+                onChange={handleChange}
+                placeholder="Enter username"
+                fullwidth
+                required
+                />
+                <TextField
+                label="Password"
+                id='password'
+                value={formObj.password}
+                onChange={handleChange}
+                placeholder="Enter password"
+                type='password'
+                fullwidth
+                required/>
+                <Button
+                variant="contained"
+                type="submit"
+                className='login__submit'
+                fullwidth
+                >
+                Login
+                </Button>
+                <div className="login__text">
+                  <Typography>{"Don't have an account? "}
+                    <Link to="/signup">
+                      Sign Up Here
+                    </Link>
+                  </Typography>
+                </div>    
+            </form>
+          </Paper>
+        </Grid>
+    </Box>
   )
 }
 
