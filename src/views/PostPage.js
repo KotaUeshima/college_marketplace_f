@@ -40,11 +40,16 @@ function PostPage({login, loggedIn}) {
       />
     })
 
+    const  rootStyle = { marginTop: '70px' }
+
+    const formButtonStyle = {marginTop: '8px'}
     
     return (
       <>
-        {loggedIn? <PostForm login={login} college={college} addNewPost={addNewPost}/> : null}
-        <Container sx={{height: 1000, width: 1100}}>
+        <div style={formButtonStyle}>
+          {loggedIn? <PostForm login={login} college={college} addNewPost={addNewPost}/> : null}
+        </div>
+        <Container style={rootStyle} sx={{height: 1000, width: 1100}}>
           <Box>
             <Grid container spacing={5}>
               {collegePosts}
