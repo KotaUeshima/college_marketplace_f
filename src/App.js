@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
+
 import LoginPage from './views/LoginPage';
 import CollegePage from './views/CollegePage';
 import PostPage from './views/PostPage';
@@ -8,7 +9,7 @@ import UserPage from './views/UserPage';
 import SignUpPage from './views/SignUpPage';
 import MoreInfoPage from './views/MoreInfoPage';
 import LandingPage from './views/LandingPage';
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+
 
 function App() {
 
