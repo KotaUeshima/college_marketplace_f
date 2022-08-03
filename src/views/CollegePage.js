@@ -25,12 +25,10 @@ function CollegePage() {
 
     return (
       <div className="college_page">
-        <Container sx={{height: 1000, width: 1100}}>
-          <Box>
+        <Container maxWidth="xl">
             <Grid container spacing={5}>
               {collegeCards}
             </Grid>
-          </Box>
         </Container>
       </div>
     )

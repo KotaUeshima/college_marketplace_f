@@ -38,7 +38,7 @@ function SignUpPage() {
         })
         .then(res => res.json())
         .then((data) => {
-            if(data != "Error"){
+            if(data !== "Error"){
                 navigate("/login")
                 setErrorMessage("")
                 setFormObj({
@@ -113,7 +113,7 @@ function SignUpPage() {
               >
               Create Account
               </Button>
-              {(errorMessage == "")? null : <Alert variant="outlined" severity="error">{errorMessage}</Alert>}
+              {(errorMessage === "")? null : <Alert variant="outlined" severity="error">{errorMessage}</Alert>}
           </form>
           </Paper>
         </Grid>

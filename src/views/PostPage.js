@@ -34,11 +34,34 @@ function PostPage() {
       setPosts((posts) => [...posts, data])
     }
 
+    function updatePost(data){
+      const updatedPosts = posts.map((mp) => {
+        if (mp.id === data.id) {
+          return data
+        } else {
+          return mp
+        }
+      })
+      setPosts((updatedPosts))
+    }
+
+    function deletePost(id) {
+      const deletedPosts = posts.filter((mp) => {
+        if (mp.id === id) {
+          return false
+        } else {
+          return true
+        }
+      })
+      setPosts((deletedPosts))
+    }
 
     const collegePosts = posts.map((post, indx) => {
       return <PostCard
         key={indx}
         post={post}
+        deletePost={deletePost}
+        updatePost={updatePost}
       />
     })
 

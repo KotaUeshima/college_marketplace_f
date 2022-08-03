@@ -12,7 +12,7 @@ function CollegeCard({college}) {
     const {college_name, image_url} = college
 
     return (
-      <Grid item sm={4}>
+      <Grid item sm={3}>
           <Link to={`/${college_name}`}>
             <Card 
             sx={{ ':hover': {boxShadow: 20,}}}
