@@ -27,8 +27,12 @@ function NavBar() {
         }
     }
 
-    const appStyle = {background: '#014980', boxShadow: 'none'}
-    const linkStyle = {textDecoration: 'none', color: '#E27D60'}
+    //'#014980'
+
+    const appStyle = {background: 'white',boxShadow: 'none'}
+    const linkStyle = {textDecoration: 'none', color: '#3d110e'}
+    const chipStyle = {backgroundColor:'#e48b27', color:'#3d110e'}
+    const welcomeStyle = {color:'#3d110e'}
     const location = useLocation()
 
   return (
@@ -43,14 +47,14 @@ function NavBar() {
                     <Link to="/colleges" style={{ textDecoration: 'none' }}>
                         <Chip
                         color='primary'
-                        style={{backgroundColor:'#014980', color:'#E27D60'}}
+                        style={chipStyle}
                         icon ={<SchoolIcon/>} 
                         label="College Marketplace"
                         />
                     </Link>
                     <Typography
                     sx={{ flexGrow: 1, ml: 4}}
-                    style={{color:'#E27D60'}}
+                    style={welcomeStyle}
                     >
                     {recoilLogin? `Welcome Back ${user.username}!` : null}
                     </Typography>

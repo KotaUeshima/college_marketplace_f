@@ -12,19 +12,20 @@ function CollegeCard({college}) {
     const {college_name, image_url} = college
 
     return (
-      <Grid item sm={3}>
-          <Link to={`/${college_name}`}>
+      <Grid item sm={2}>
+          <Link style={{textDecoration: 'none'}} to={`/${college_name}`}>
             <Card 
             sx={{ ':hover': {boxShadow: 20,}}}
             >
                 <CardMedia
                 component="img"
-                height="275"
+                height="100"
+                fit="cover"
                 image={image_url}
                 alt={college_name}
                 />
                 <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="subtitle1" component="div">
                   {college_name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
