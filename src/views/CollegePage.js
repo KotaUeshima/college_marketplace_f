@@ -4,7 +4,7 @@ import "./CollegePage.css"
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
+import SearchBar from './SearchBar';
 
 function CollegePage() {
 
@@ -25,7 +25,8 @@ function CollegePage() {
 
     return (
       <div className="college_page">
-        <Container maxWidth="lg">
+        <SearchBar />
+        <Container maxWidth="lg" style={{marginTop: '40px'}}>
             <Grid container spacing={5}>
               {collegeCards}
             </Grid>
