@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import MoreIcon from '@mui/icons-material/More';
+import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import FormControl  from '@mui/material/FormControl'
@@ -55,6 +55,7 @@ function PostCard({post, updatePost, deletePost}) {
     function handleChange(e){
         setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
     }
+    console.log(formObj)
 
     function handleSubmit(e){
         e.preventDefault()
@@ -68,12 +69,12 @@ function PostCard({post, updatePost, deletePost}) {
         })
         .then(res => res.json())
         .then(data => {
-          updatePost(data)
+            updatePost(data)
             setFormObj({
-                item_name: "",
-                image_url: "",
-                price: 0,
-                phone_numnber: ""
+                item_name: data.item_name,
+                image_url: data.image_url,
+                price: data.price,
+                phone_number: data.phone_number
             })
         })
         handleClose()
@@ -141,42 +142,45 @@ function PostCard({post, updatePost, deletePost}) {
         <Modal open={open} onClose={handleClose}>
           <div className="postform__content">
               <form className="postform__form" onSubmit={handleSubmit}>
-                  <FormControl className='postform__item_name'>
-                      <InputLabel htmlFor='item_name'>Item Name</InputLabel>
-                      <FilledInput
-                      id='item_name'
-                      type='text'
-                      value={formObj.item_name}
-                      onChange={handleChange}
-                      />
-                  </FormControl>
-                  <FormControl className='postform__image'>
-                      <InputLabel htmlFor='image_url' >Image URL</InputLabel>
-                      <FilledInput
-                      id='image_url'
-                      type='text'
-                      value={formObj.image_url}
-                      onChange={handleChange}
-                      />
-                  </FormControl>
-                  <FormControl className='postform__price'>
-                      <InputLabel htmlFor='price' >Price</InputLabel>
-                      <FilledInput
-                      id='price'
-                      type='text'
-                      value={formObj.price}
-                      onChange={handleChange}
-                      />
-                  </FormControl>
-                  <FormControl className='postform__phone_number'>
-                      <InputLabel htmlFor='phone_number' >Phone Number</InputLabel>
-                      <FilledInput
-                      id='phone_number'
-                      type='text'
-                      value={formObj.phone_number}
-                      onChange={handleChange}
-                      />
-                  </FormControl>
+                  <TextField
+                  className='postform__item_name'
+                  label="Item Name"
+                  id='item_name'
+                  value={formObj.item_name}
+                  onChange={handleChange}
+                  placeholder="Enter item name"
+                  fullwidth
+                  required
+                  />
+                  <TextField
+                  className='postform__image'
+                  label="Image Url"
+                  id='image_url'
+                  value={formObj.image_url}
+                  onChange={handleChange}
+                  placeholder="Enter image url"
+                  fullwidth
+                  required
+                  />
+                  <TextField
+                  className='postform__price'
+                  label="Price"
+                  id='price'
+                  value={formObj.price}
+                  onChange={handleChange}
+                  placeholder="Enter price:"
+                  fullwidth
+                  required
+                  />
+                  <TextField
+                  className='postform__phone_number'
+                  label="Phone Number"
+                  id='phone_number'
+                  value={formObj.phone_number}
+                  onChange={handleChange}
+                  placeholder="Enter phone number:"
+                  fullwidth
+                  />
                   <Button
                   variant="contained"
                   type="submit"
