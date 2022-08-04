@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ThemeProvider } from '@mui/material/styles';
+import { Typography } from '@mui/material';
 
 
 function PostPage({theme}) {
@@ -73,13 +74,22 @@ function PostPage({theme}) {
     })
 
     const  rootStyle = { marginTop: '50px' }
-    const formButtonStyle = {marginTop: '8px', marginLeft: 'calc(50vh + 200px)'}
+    const formButtonStyle = {marginTop: '8px', display: 'flex', justifyContent: 'center'}
+    const titleStyle = {marginTop: '8px', display: 'flex', justifyContent: 'center'}
     
     return (
       <>
-      <ThemeProvider theme={theme}>
-        <Button onClick={() => navigate(-1)} variant="contained" endIcon={<ArrowBackIcon />}>Back</Button>
+        <ThemeProvider theme={theme}>
+          <Button style={{marginTop: "20px", marginLeft: "30px"}}onClick={() => navigate(-1)} variant="contained" endIcon={<ArrowBackIcon />}>Back</Button>
         </ThemeProvider>
+        <div style={titleStyle}>
+          <img
+            src={college.image_url}
+            height='160px'
+            width='160px'
+            fit='cover'
+          />
+        </div>
         <div style={formButtonStyle}>
           {recoilLogin? <PostForm theme={theme} college={college} addNewPost={addNewPost}/> : null}
         </div>
