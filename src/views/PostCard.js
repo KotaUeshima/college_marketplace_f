@@ -12,10 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import FormControl  from '@mui/material/FormControl'
-import InputLabel from "@mui/material/InputLabel"
 import Modal from "@mui/material/Modal"
-import FilledInput from '@mui/material/FilledInput'
 import { useRecoilValue } from 'recoil';
 import { loggedIn } from './atoms';
 import { userState } from './atoms';
@@ -87,7 +84,7 @@ function PostCard({post, updatePost, deletePost}) {
     const string = '^/images'
     const regexp = new RegExp(string)
     let image = image_url
-    if(regexp.test(image) == true){
+    if(regexp.test(image) === true){
       image = `http://localhost:9292/${image_url}`
     }
 

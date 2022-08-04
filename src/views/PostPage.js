@@ -8,13 +8,18 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { useRecoilValue } from 'recoil';
 import { loggedIn } from './atoms';
-import { calculateNewValue } from '@testing-library/user-event/dist/utils';
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { ThemeProvider } from '@mui/material/styles';
 
-function PostPage() {
+
+function PostPage({theme}) {
 
     const [college, setCollege] = useState({})
     const [posts, setPosts] = useState([])
     const recoilLogin = useRecoilValue(loggedIn)
+    const navigate = useNavigate()
 
     const {college_name} = useParams()
     // useParams = {college_name: Notre Dame}//
@@ -63,6 +68,7 @@ function PostPage() {
         post={post}
         deletePost={deletePost}
         updatePost={updatePost}
+        theme={theme}
       />
     })
 
@@ -71,8 +77,11 @@ function PostPage() {
     
     return (
       <>
+      <ThemeProvider theme={theme}>
+        <Button onClick={() => navigate(-1)} variant="contained" endIcon={<ArrowBackIcon />}>Back</Button>
+        </ThemeProvider>
         <div style={formButtonStyle}>
-          {recoilLogin? <PostForm college={college} addNewPost={addNewPost}/> : null}
+          {recoilLogin? <PostForm theme={theme} college={college} addNewPost={addNewPost}/> : null}
         </div>
         <Container style={rootStyle} sx={{height: 1000, width: 1100}}>
           <Box>

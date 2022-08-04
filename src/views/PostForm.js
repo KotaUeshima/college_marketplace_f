@@ -1,16 +1,13 @@
 import React, {useState} from 'react'
 import "./PostForm.css"
-
-import FormControl  from '@mui/material/FormControl'
-import InputLabel from "@mui/material/InputLabel"
 import Modal from "@mui/material/Modal"
-import FilledInput from '@mui/material/FilledInput'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import { useRecoilValue } from 'recoil'
 import { userState } from './atoms'
+import { ThemeProvider } from '@mui/material'
 
-function PostForm({college, addNewPost}) {
+function PostForm({college, addNewPost, theme}) {
     const [open, setOpen] = useState(false)
     const user = useRecoilValue(userState)
 
@@ -64,7 +61,9 @@ function PostForm({college, addNewPost}) {
 
   return (
     <div className="postform">
+        <ThemeProvider theme={theme}>
         <Button variant='contained' onClick={handleOpen}>Create a New Post</Button>
+        </ThemeProvider>
         <Modal open={open} onClose={handleClose}>
         <div className="postform__content">
             <form className="postform__form" onSubmit={handleSubmit}>
@@ -103,6 +102,7 @@ function PostForm({college, addNewPost}) {
                 fullwidth
                 required
                 />
+                <ThemeProvider theme={theme}>
                 <Button
                 variant="contained"
                 type="submit"
@@ -110,6 +110,7 @@ function PostForm({college, addNewPost}) {
                 >
                 Submit
                 </Button>
+                </ThemeProvider>
             </form>
         </div>
         </Modal>
