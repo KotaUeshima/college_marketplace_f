@@ -7,15 +7,21 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
+import { useRecoilValue } from 'recoil';
+import { loggedIn, userState } from './atoms';
 
 function MoreInfoPage({theme}) {
+
+  const user = useRecoilValue(userState)
+  const recoilLogin = useRecoilValue(loggedIn)
   
   const [info, setInfo] = useState('')
   const {id} = useParams()
-  const {image_url, item_name, phone_number, price} = info
+  const {image_url, item_name, phone_number, price, user_id} = info
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -44,10 +50,21 @@ function MoreInfoPage({theme}) {
     image = `http://localhost:9292/${image_url}`
   }
 
+  let showInterestButton = false
+  if(recoilLogin){
+    if(user_id != user.id){
+      showInterestButton = true
+    }
+  }
+  
+  function handleInterest(){
+    
+  } 
+
   return (
     <>
             <ThemeProvider theme={theme}>
-            <Button onClick={() => navigate(-1)} variant="contained" endIcon={<ArrowBackIcon />}>Back</Button>
+              <Button style={{marginTop: "20px", marginLeft: "30px"}} onClick={() => navigate(-1)} variant="contained" endIcon={<ArrowBackIcon />}>Back</Button>
             </ThemeProvider>
     <Container  style={boxStyle} sx={{height: 1000, width: 1100}}>
         <Box>
@@ -75,6 +92,10 @@ function MoreInfoPage({theme}) {
                   {`Contact Info: ${phone_number}`}
                 </Typography>
             </CardContent>
+            {showInterestButton? 
+            <Button onClick={handleInterest}>
+              Send Interest
+            </Button> : null}
           </Card>
       </Box>
     </Container>
