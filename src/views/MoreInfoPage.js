@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
@@ -58,7 +57,17 @@ function MoreInfoPage({theme}) {
   }
   
   function handleInterest(){
-    
+    fetch(`http://localhost:9292/interests`,{
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          user_id: user.id,
+          post_id: id
+        })
+      })
   } 
 
   return (
