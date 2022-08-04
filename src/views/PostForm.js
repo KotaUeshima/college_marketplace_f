@@ -47,7 +47,6 @@ function PostForm({college, addNewPost}) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             addNewPost(data)
             setFormObj({
                 item_name: "",
