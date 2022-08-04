@@ -20,6 +20,8 @@ import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Badge } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail'
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
 
 function PostCard({post, updatePost, deletePost}) {
 
@@ -101,8 +103,15 @@ function PostCard({post, updatePost, deletePost}) {
 
     const buttonStyle = {color: '#3d110e'}
     const [openBadge, setOpenBadge] = useState(false)
-    const handleOpenBadge = () => setOpenBadge(true)
+    const handleOpenBadge = () => {
+      if(interestNames.length > 0){
+        setOpenBadge(true)
+      }
+    }
     const handleCloseBadge = () => setOpenBadge(false)
+
+
+    const paperStyle = {margin: 'auto', height: '250px', width: '250px',  display: 'flex', justifyContents: 'center', alignItems: 'center'}
   
     return (
         <Grid item xs={3}>
@@ -132,11 +141,11 @@ function PostCard({post, updatePost, deletePost}) {
                 </CardContent>
                 <CardActions>
                   <Modal open={openBadge} onClose={handleCloseBadge}>
-                    <Paper>
-                    {interestNames.map((n) => {
-                      return <Typography>{n}</Typography>
-                    })}
-                    </Paper>
+                      <Paper style={paperStyle}>
+                      {interestNames.map((n) => {
+                        return <Avatar sx={{ width: 60, height: 60 }}>{n}</Avatar>
+                      })}
+                      </Paper>
                   </Modal>
                   {showIcons ?
                     <IconButton style={buttonStyle}>
