@@ -37,7 +37,7 @@ function NavBar() {
 
   return (
     <>
-        {(location.pathname == "/")? null :
+        {(location.pathname === "/")? null :
         <Box sx={{flexGrow: 1}}>
             <AppBar 
             style={appStyle} 

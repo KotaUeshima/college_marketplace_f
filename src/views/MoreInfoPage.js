@@ -5,14 +5,18 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container'
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material';
 
-
-function MoreInfoPage() {
+function MoreInfoPage({theme}) {
   
   const [info, setInfo] = useState('')
   const {id} = useParams()
   const {image_url, item_name, phone_number, price} = info
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch(`http://localhost:9292/more_info/${id}`)
@@ -36,11 +40,15 @@ function MoreInfoPage() {
   const string = '^/images'
   const regexp = new RegExp(string)
   let image = image_url
-  if(regexp.test(image) == true){
+  if(regexp.test(image) === true){
     image = `http://localhost:9292/${image_url}`
   }
 
   return (
+    <>
+            <ThemeProvider theme={theme}>
+            <Button onClick={() => navigate(-1)} variant="contained" endIcon={<ArrowBackIcon />}>Back</Button>
+            </ThemeProvider>
     <Container  style={boxStyle} sx={{height: 1000, width: 1100}}>
         <Box>
           <Card 
@@ -70,6 +78,7 @@ function MoreInfoPage() {
           </Card>
       </Box>
     </Container>
+   </>
   )
 }
 
