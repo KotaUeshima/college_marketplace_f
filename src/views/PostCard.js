@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -17,6 +17,9 @@ import { useRecoilValue } from 'recoil';
 import { loggedIn } from './atoms';
 import { userState } from './atoms';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import { Badge } from '@mui/material';
+import MailIcon from '@mui/icons-material/Mail'
+import Paper from '@mui/material/Paper';
 
 function PostCard({post, updatePost, deletePost}) {
 
@@ -42,6 +45,15 @@ function PostCard({post, updatePost, deletePost}) {
       phone_number: phone_number
     })
 
+    const [interestNames, setInterestNames] = useState([])
+    useEffect(() => {
+      fetch(`http://localhost:9292/my_posts/${post.id}/interests`)
+      .then(res => res.json())
+      .then(setInterestNames)
+    },[])
+
+    
+
     function handleDelete() {
       fetch(`http://localhost:9292/my_posts/${post.id}`, {
         method: "DELETE",
@@ -52,7 +64,6 @@ function PostCard({post, updatePost, deletePost}) {
     function handleChange(e){
         setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
     }
-    console.log(formObj)
 
     function handleSubmit(e){
         e.preventDefault()
@@ -89,6 +100,9 @@ function PostCard({post, updatePost, deletePost}) {
     }
 
     const buttonStyle = {color: '#3d110e'}
+    const [openBadge, setOpenBadge] = useState(false)
+    const handleOpenBadge = () => setOpenBadge(true)
+    const handleCloseBadge = () => setOpenBadge(false)
   
     return (
         <Grid item xs={3}>
@@ -117,9 +131,23 @@ function PostCard({post, updatePost, deletePost}) {
                   </Typography>
                 </CardContent>
                 <CardActions>
+                  <Modal open={openBadge} onClose={handleCloseBadge}>
+                    <Paper>
+                    {interestNames.map((n) => {
+                      return <Typography>{n}</Typography>
+                    })}
+                    </Paper>
+                  </Modal>
                   {showIcons ?
                     <IconButton style={buttonStyle}>
                       <EditIcon variant='contained' onClick={handleOpen}>Open form</EditIcon>
+                    </IconButton>
+                    : null}
+                    {showIcons ?
+                    <IconButton style={buttonStyle}>
+                    <Badge badgeContent={interestNames.length} color="primary">
+                      <MailIcon onClick={handleOpenBadge} />
+                    </Badge>
                     </IconButton>
                     : null}
                   {showIcons ? 
