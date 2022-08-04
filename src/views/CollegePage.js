@@ -25,7 +25,7 @@ function CollegePage() {
 
     return (
       <div className="college_page">
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
             <Grid container spacing={5}>
               {collegeCards}
             </Grid>

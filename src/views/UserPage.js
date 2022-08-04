@@ -48,15 +48,16 @@ function UserPage() {
         deletePost={deletePost}
       />
     })
+    const  rootStyle = { marginTop: '70px' }
 
   return (
-    <Container sx={{height: 1000, width: 1100}}>
+    <Container style={rootStyle} sx={{height: 1000, width: 1100}}>
           <Box>
             <Grid container spacing={5}>
               {myPostList}
             </Grid>
           </Box>
-        </Container>
+    </Container>
   )
 }
 

@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { useRecoilValue } from 'recoil';
 import { loggedIn } from './atoms';
+import { calculateNewValue } from '@testing-library/user-event/dist/utils';
 
 function PostPage() {
 
@@ -65,8 +66,8 @@ function PostPage() {
       />
     })
 
-    const  rootStyle = { marginTop: '70px' }
-    const formButtonStyle = {marginTop: '8px'}
+    const  rootStyle = { marginTop: '50px' }
+    const formButtonStyle = {marginTop: '8px', marginLeft: 'calc(50vh + 200px)'}
     
     return (
       <>

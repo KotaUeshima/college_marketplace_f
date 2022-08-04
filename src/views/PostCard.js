@@ -4,8 +4,10 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreIcon from '@mui/icons-material/More';
 import { Link } from 'react-router-dom';
@@ -17,6 +19,7 @@ import FilledInput from '@mui/material/FilledInput'
 import { useRecoilValue } from 'recoil';
 import { loggedIn } from './atoms';
 import { userState } from './atoms';
+import ReadMoreIcon from '@mui/icons-material/ReadMore';
 
 function PostCard({post, updatePost, deletePost}) {
 
@@ -86,6 +89,8 @@ function PostCard({post, updatePost, deletePost}) {
     if(regexp.test(image) == true){
       image = `http://localhost:9292/${image_url}`
     }
+
+    const buttonStyle = {color: '#3d110e'}
   
     return (
         <Grid item xs={3}>
@@ -112,12 +117,27 @@ function PostCard({post, updatePost, deletePost}) {
                   <Typography variant="body2">
                     {phone_number}
                   </Typography>
-                  <div className="postform">
-        {showIcons ? <EditIcon variant='contained' onClick={handleOpen}>Open form</EditIcon> : null}
-        {showIcons ? <DeleteIcon onClick={handleDelete}/> : null}
-        <Link to={`/more_info/${post.id}`}>
-        <MoreIcon/>
-        </Link>
+                </CardContent>
+                <CardActions>
+                  {showIcons ?
+                    <IconButton style={buttonStyle}>
+                      <EditIcon variant='contained' onClick={handleOpen}>Open form</EditIcon>
+                    </IconButton>
+                    : null}
+                  {showIcons ? 
+                    <IconButton style={buttonStyle}>
+                      <DeleteIcon onClick={handleDelete}/> 
+                    </IconButton>
+                  : null}
+                  <IconButton style={{marginLeft: 'auto', color: '#3d110e'}}>
+                    <Link to={`/more_info/${post.id}`}>
+                      <ReadMoreIcon/>
+                    </Link>
+                  </IconButton>
+                </CardActions>
+        
+
+        <div className="postform">
         <Modal open={open} onClose={handleClose}>
           <div className="postform__content">
               <form className="postform__form" onSubmit={handleSubmit}>
@@ -168,7 +188,7 @@ function PostCard({post, updatePost, deletePost}) {
           </div>
         </Modal>
     </div>
-              </CardContent>
+             
             </Card>
         </Grid>
     )
