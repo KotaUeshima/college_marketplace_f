@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import CollegeCard from './CollegeCard'
 import "./CollegePage.css"
-
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import SearchBar from './SearchBar';

@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import './LoginPage.css'
 import {useNavigate, Link} from 'react-router-dom'
-
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
@@ -18,18 +17,15 @@ function LoginPage() {
 
     const setLoggedIn = useSetRecoilState(loggedIn)
     const setUserState = useSetRecoilState(userState)
-
     const [formObj, setFormObj] = useState({
       username: "",
       password: ""
     })
-
     let navigate = useNavigate()
 
     function handleChange(e){
         setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
     }
-
 
     function handleSubmit(e){
         e.preventDefault()
@@ -81,28 +77,28 @@ function LoginPage() {
             </Grid>
             <form className="login__form" onSubmit={handleSubmit}>
                 <TextField
-                label="Username"
-                id='username'
-                value={formObj.username}
-                onChange={handleChange}
-                placeholder="Enter username"
-                fullwidth
-                required
+                  label="Username"
+                  id='username'
+                  value={formObj.username}
+                  onChange={handleChange}
+                  placeholder="Enter username"
+                  fullwidth
+                  required
                 />
                 <TextField
-                label="Password"
-                id='password'
-                value={formObj.password}
-                onChange={handleChange}
-                placeholder="Enter password"
-                type='password'
-                fullwidth
-                required/>
+                  label="Password"
+                  id='password'
+                  value={formObj.password}
+                  onChange={handleChange}
+                  placeholder="Enter password"
+                  type='password'
+                  fullwidth
+                  required/>
                 <Button
-                variant="contained"
-                type="submit"
-                className='login__submit'
-                fullwidth
+                  variant="contained"
+                  type="submit"
+                  className='login__submit'
+                  fullwidth
                 >
                 Login
                 </Button>

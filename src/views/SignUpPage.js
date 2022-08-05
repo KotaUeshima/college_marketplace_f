@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
@@ -8,9 +7,7 @@ import Avatar from '@mui/material/Avatar'
 import TextField from '@mui/material/TextField'
 import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
-
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
 
 function SignUpPage() {
 
@@ -19,7 +16,6 @@ function SignUpPage() {
         password: ""
     })
     const [errorMessage, setErrorMessage] = useState("")
-
     let navigate = useNavigate()
   
     function handleChange(e){

@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import PostCard from './PostCard'
 import PostForm from './PostForm';
-
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -14,14 +13,12 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ThemeProvider } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 
-
 function PostPage({theme}) {
 
     const [college, setCollege] = useState({})
     const [posts, setPosts] = useState([])
     const recoilLogin = useRecoilValue(loggedIn)
     const navigate = useNavigate()
-
     const {college_name} = useParams()
     // useParams = {college_name: Notre Dame}//
 
