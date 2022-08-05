@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
-
 import Box from '@mui/material/Box'
 import Grow from '@mui/material/Grow';
 import Button from '@mui/material/Button';
-
 const image = 'https://www.designyourway.net/blog/wp-content/uploads/2019/02/aesthetic-wallpaper-1.jpg'
 
 const rootStyle = {
@@ -38,7 +36,6 @@ function LandingPage() {
     useEffect(() => {
         setChecked(true)
     }, [])
-
 
   return (
     <Box style={rootStyle}>

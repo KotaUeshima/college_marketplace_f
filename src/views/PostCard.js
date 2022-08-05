@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -20,7 +19,6 @@ import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Badge } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail'
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 
 function PostCard({post, updatePost, deletePost}) {
@@ -31,7 +29,6 @@ function PostCard({post, updatePost, deletePost}) {
     const {item_name, image_url, price, phone_number} = post
     const recoilLogin = useRecoilValue(loggedIn)
     const user = useRecoilValue(userState)
-
     let showIcons = false
 
     if (recoilLogin){
@@ -53,8 +50,6 @@ function PostCard({post, updatePost, deletePost}) {
       .then(res => res.json())
       .then(setInterestNames)
     },[])
-
-    
 
     function handleDelete() {
       fetch(`http://localhost:9292/my_posts/${post.id}`, {
@@ -109,7 +104,6 @@ function PostCard({post, updatePost, deletePost}) {
       }
     }
     const handleCloseBadge = () => setOpenBadge(false)
-
 
     const paperStyle = {margin: 'auto', height: '250px', width: '250px',  display: 'flex', justifyContents: 'center', alignItems: 'center'}
   
@@ -170,8 +164,6 @@ function PostCard({post, updatePost, deletePost}) {
                     </Link>
                   </IconButton>
                 </CardActions>
-        
-
         <div className="postform">
         <Modal open={open} onClose={handleClose}>
           <div className="postform__content">
@@ -226,7 +218,6 @@ function PostCard({post, updatePost, deletePost}) {
           </div>
         </Modal>
     </div>
-             
             </Card>
         </Grid>
     )

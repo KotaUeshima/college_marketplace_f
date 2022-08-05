@@ -17,7 +17,6 @@ function MoreInfoPage({theme}) {
 
   const user = useRecoilValue(userState)
   const recoilLogin = useRecoilValue(loggedIn)
-  
   const [info, setInfo] = useState('')
   const {id} = useParams()
   const {image_url, item_name, phone_number, price, user_id} = info
@@ -72,42 +71,42 @@ function MoreInfoPage({theme}) {
 
   return (
     <>
-            <ThemeProvider theme={theme}>
-              <Button style={{marginTop: "20px", marginLeft: "30px"}} onClick={() => navigate(-1)} variant="contained" endIcon={<ArrowBackIcon />}>Back</Button>
-            </ThemeProvider>
-    <Container  style={boxStyle} sx={{height: 1000, width: 1100}}>
-        <Box>
-          <Card 
-          sx={{
-              ':hover': {
-              boxShadow: 20,
-              }
-          }}
-          >
+    <ThemeProvider theme={theme}>
+      <Button style={{marginTop: "20px", marginLeft: "30px"}} onClick={() => navigate(-1)} variant="contained" endIcon={<ArrowBackIcon />}>Back</Button>
+    </ThemeProvider>
+      <Container  style={boxStyle} sx={{height: 1000, width: 1100}}>
+          <Box>
+            <Card 
+            sx={{
+                ':hover': {
+                boxShadow: 20,
+                }
+            }}
+            >
               <CardMedia
-              component="img"
-              height= '450'
-              image={image}
-              alt={item_name}
+                component="img"
+                height= '450'
+                image={image}
+                alt={item_name}
               /> 
-              <CardContent>
-                <Typography style={titleStyle} variant="h5">
-                  {item_name}
-                </Typography>
-                <Typography variant="body2">
-                  {`Price: $${price}`}
-                </Typography>
-                <Typography variant="body2">
-                  {`Contact Info: ${phone_number}`}
-                </Typography>
-            </CardContent>
-            {showInterestButton? 
-            <Button onClick={handleInterest}>
-              Send Interest
-            </Button> : null}
-          </Card>
-      </Box>
-    </Container>
+                <CardContent>
+                  <Typography style={titleStyle} variant="h5">
+                    {item_name}
+                  </Typography>
+                  <Typography variant="body2">
+                    {`Price: $${price}`}
+                  </Typography>
+                  <Typography variant="body2">
+                    {`Contact Info: ${phone_number}`}
+                  </Typography>
+              </CardContent>
+              {showInterestButton? 
+              <Button onClick={handleInterest}>
+                Send Interest
+              </Button> : null}
+            </Card>
+        </Box>
+      </Container>
    </>
   )
 }

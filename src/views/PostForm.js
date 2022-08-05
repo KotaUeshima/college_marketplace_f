@@ -10,14 +10,13 @@ import { ThemeProvider } from '@mui/material'
 function PostForm({college, addNewPost, theme}) {
     const [open, setOpen] = useState(false)
     const user = useRecoilValue(userState)
+    const [imageFile, setImageFile] = useState()
 
     const [formObj, setFormObj] = useState({
         item_name: "",
         price: 0,
         phone_number: ""
     })
-
-    const [imageFile, setImageFile] = useState()
 
     function handleChange(e){
         setFormObj(obj => ({...obj, [e.target.id]: e.target.value}))
@@ -57,7 +56,6 @@ function PostForm({college, addNewPost, theme}) {
 
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
-
 
   return (
     <div className="postform">
@@ -115,7 +113,7 @@ function PostForm({college, addNewPost, theme}) {
         </div>
         </Modal>
     </div>
-  )
+)
 }
 
 export default PostForm

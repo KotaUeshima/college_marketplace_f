@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link, useLocation} from 'react-router-dom'
-
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -9,12 +8,10 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
-
 import HomeIcon from '@mui/icons-material/Home';
 import SchoolIcon from '@mui/icons-material/School';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { loggedIn, userState } from './atoms';
-
 
 function NavBar() {
 
@@ -26,8 +23,6 @@ function NavBar() {
             setRecoilLogin(false)
         }
     }
-
-    //'#014980'
 
     const appStyle = {background: 'white',boxShadow: 'none'}
     const linkStyle = {textDecoration: 'none', color: '#3d110e'}
@@ -46,34 +41,34 @@ function NavBar() {
                 <Toolbar>
                     <Link to="/colleges" style={{ textDecoration: 'none' }}>
                         <Chip
-                        color='primary'
-                        style={chipStyle}
-                        icon ={<SchoolIcon/>} 
-                        label="College Marketplace"
+                            color='primary'
+                            style={chipStyle}
+                            icon ={<SchoolIcon/>} 
+                            label="College Marketplace"
                         />
                     </Link>
                     <Typography
-                    sx={{ flexGrow: 1, ml: 4}}
-                    style={welcomeStyle}
-                    >
-                    {recoilLogin? `Welcome Back ${user.username}!` : null}
+                        sx={{ flexGrow: 1, ml: 4}}
+                        style={welcomeStyle}
+                        >
+                        {recoilLogin? `Welcome Back ${user.username}!` : null}
                     </Typography>
                     <Link to="/colleges" style={linkStyle}>
                         <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
                         >
                             <HomeIcon/>   
                         </IconButton>
-                    </Link> 
-                    {recoilLogin ? 
-                    <Link to="/my_posts" style={linkStyle}>
-                        <Button color="inherit">My posts</Button>
-                    </Link> : null}
-                    <Link to={recoilLogin? "/colleges" : "/login"} style={linkStyle}>
+                        </Link> 
+                        {recoilLogin ? 
+                        <Link to="/my_posts" style={linkStyle}>
+                            <Button color="inherit">My posts</Button>
+                        </Link> : null}
+                        <Link to={recoilLogin? "/colleges" : "/login"} style={linkStyle}>
                         <Button onClick={handleLogOut} color="inherit">
                         {recoilLogin? "Logout" : "Login"}
                         </Button>

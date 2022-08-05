@@ -8,11 +8,10 @@ function SearchBar() {
     const [nameResults, setNameResults] = useState([])
     const [value, setValue] = React.useState(nameResults[0]);
     const [inputValue, setInputValue] = React.useState('');
-
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch("http://localhost:9292/searchnames")
+        fetch("http://localhost:9292/colleges")
         .then(res => res.json())
         .then(setNameResults)
     },[])
@@ -28,8 +27,7 @@ function SearchBar() {
         }
     }
 
-
-  return (
+return (
     <>
     <Stack sx={{width: 300, margin: "auto"}}>
         {(nameResults.length === 0) ? null :
@@ -58,7 +56,7 @@ function SearchBar() {
         }
     </Stack>
     </>
-  )
+)
 }
 
 export default SearchBar
