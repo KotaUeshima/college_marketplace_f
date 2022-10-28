@@ -27,7 +27,6 @@ function NavBar() {
   const linkStyle = { textDecoration: "none", color: "#3d110e" };
   const chipStyle = { backgroundColor: "#e48b27", color: "#3d110e" };
   const welcomeStyle = { color: "#3d110e" };
-  let test = "test";
   const location = useLocation();
 
   return (
