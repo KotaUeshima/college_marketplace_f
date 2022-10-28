@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField'
 import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import URL from "./URL.js";
 
 function SignUpPage() {
 
@@ -24,7 +25,7 @@ function SignUpPage() {
   
     function handleSubmit(e){
         e.preventDefault()
-        fetch(`http://localhost:9292/create_account`,{
+        fetch(`${URL}/create_account`,{
         method: "POST",
         headers: {
             "Content-Type": 'application/json',

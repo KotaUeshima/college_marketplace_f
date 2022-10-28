@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useNavigate } from "react-router-dom";
+import URL from "./URL.js";
 
 function SearchBar() {
   const [nameResults, setNameResults] = useState([]);
@@ -11,7 +12,7 @@ function SearchBar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:9292/colleges")
+    fetch(`${URL}/colleges`)
       .then((res) => res.json())
       .then(setNameResults);
   }, []);

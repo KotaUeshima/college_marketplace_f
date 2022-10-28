@@ -12,6 +12,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { userState } from './atoms'
 import { loggedIn } from './atoms'
 import { useSetRecoilState } from 'recoil'
+import URL from "./URL.js";
 
 function LoginPage() {
 
@@ -29,7 +30,7 @@ function LoginPage() {
 
     function handleSubmit(e){
         e.preventDefault()
-        fetch(`http://localhost:9292/users`,{
+        fetch(`${URL}/users`,{
           method: "POST",
           headers: {
             "Content-Type": 'application/json',

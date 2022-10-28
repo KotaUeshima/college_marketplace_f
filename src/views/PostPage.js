@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { ThemeProvider } from "@mui/material/styles";
+import URL from "./URL.js";
 
 function PostPage({ theme }) {
   const [college, setCollege] = useState({});
@@ -21,13 +22,13 @@ function PostPage({ theme }) {
   // useParams = {college_name: Notre Dame}//
 
   useEffect(() => {
-    fetch(`http://localhost:9292/colleges/${college_name}`)
+    fetch(`${URL}/colleges/${college_name}`)
       .then((res) => res.json())
       .then(setCollege);
   }, [college_name]);
 
   useEffect(() => {
-    fetch(`http://localhost:9292/colleges/${college_name}/posts`)
+    fetch(`${URL}/colleges/${college_name}/posts`)
       .then((res) => res.json())
       .then(setPosts);
   }, [college_name]);

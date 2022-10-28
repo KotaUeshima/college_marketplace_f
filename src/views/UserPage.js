@@ -5,13 +5,14 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { useRecoilValue } from "recoil";
 import { userState } from "./atoms";
+import URL from "./URL.js";
 
 function UserPage() {
   const [myPosts, mySetPosts] = useState([]);
   const user = useRecoilValue(userState);
 
   useEffect(() => {
-    fetch(`http://localhost:9292/my_posts/${user.id}`)
+    fetch(`${URL}/my_posts/${user.id}`)
       .then((res) => res.json())
       .then(mySetPosts);
   }, [user.id]);

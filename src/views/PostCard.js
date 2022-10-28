@@ -20,6 +20,7 @@ import { Badge } from "@mui/material";
 import MailIcon from "@mui/icons-material/Mail";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
+import URL from "./URL.js";
 
 function PostCard({ post, updatePost, deletePost }) {
   const [open, setOpen] = React.useState(false);
@@ -45,13 +46,13 @@ function PostCard({ post, updatePost, deletePost }) {
 
   const [interestNames, setInterestNames] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:9292/my_posts/${post.id}/interests`)
+    fetch(`${URL}/my_posts/${post.id}/interests`)
       .then((res) => res.json())
       .then(setInterestNames);
   }, [post.id]);
 
   function handleDelete() {
-    fetch(`http://localhost:9292/my_posts/${post.id}`, {
+    fetch(`${URL}/my_posts/${post.id}`, {
       method: "DELETE",
     }).then(deletePost(post.id));
   }
@@ -62,7 +63,7 @@ function PostCard({ post, updatePost, deletePost }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`http://localhost:9292/my_posts/${post.id}`, {
+    fetch(`${URL}/${post.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +92,7 @@ function PostCard({ post, updatePost, deletePost }) {
   const regexp = new RegExp(string);
   let image = image_url;
   if (regexp.test(image) === true) {
-    image = `http://localhost:9292/${image_url}`;
+    image = `${URL}/${image_url}`;
   }
 
   const buttonStyle = { color: "#3d110e" };

@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { loggedIn, userState } from "./atoms";
+import URL from "./URL.js";
 
 function MoreInfoPage({ theme }) {
   const user = useRecoilValue(userState);
@@ -22,7 +23,7 @@ function MoreInfoPage({ theme }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:9292/more_info/${id}`)
+    fetch(`${URL}/more_info/${id}`)
       .then((res) => res.json())
       .then(setInfo);
   }, [id]);
@@ -44,7 +45,7 @@ function MoreInfoPage({ theme }) {
   const regexp = new RegExp(string);
   let image = image_url;
   if (regexp.test(image) === true) {
-    image = `http://localhost:9292/${image_url}`;
+    image = `${URL}/${image_url}`;
   }
 
   let showInterestButton = false;
@@ -55,7 +56,7 @@ function MoreInfoPage({ theme }) {
   }
 
   function handleInterest() {
-    fetch(`http://localhost:9292/interests`, {
+    fetch(`${URL}/interests`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
